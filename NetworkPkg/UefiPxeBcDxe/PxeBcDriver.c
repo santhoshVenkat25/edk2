@@ -110,7 +110,9 @@ PxeBcDestroyIp4Children (
   )
 {
   ASSERT (Private != NULL);
-
+  if (Private == NULL){
+      return;
+  }
   if (Private->ArpChild != NULL) {
     //
     // Close Arp for PxeBc->Arp and destroy the instance.
@@ -294,7 +296,9 @@ PxeBcDestroyIp6Children (
   )
 {
   ASSERT (Private != NULL);
-
+  if (Private == NULL){
+      return;
+  }
   if (Private->Ip6Child != NULL) {
     //
     // Close Ip6 for Ip6->Ip6Config and destroy the instance.
@@ -566,6 +570,9 @@ PxeBcCreateIp4Children (
   PXEBC_PRIVATE_PROTOCOL       *Id;
   EFI_SIMPLE_NETWORK_PROTOCOL  *Snp;
 
+  if (Private == NULL){
+      return EFI_INVALID_PARAMETER;
+  }
   if (Private->Ip4Nic != NULL) {
     //
     // Already created before.
